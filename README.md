@@ -7,6 +7,6 @@
 ```
 $env:PSModulePath -split ';'
 ```
-> choose powershell or windowspowershell module directory
-> put files on modules directory
+> choose powershell or windowspowershell modules directory
+> put files in modules directory
 ### enjoy life!
