@@ -22,10 +22,8 @@ function  Out-Cache {
 }
 
 function  Change-JDK {
-    Write-Output $PSVersionTable | Select-Object OS, PSVersion, Platform, PSCompatibleVersions
 
     if (Test-Path -Path "jdkpath.txt" -PathType leaf) {
-        Write-Output "---------------JDK Path File has been cached----------"
         $check = Read-Host -Prompt "Rebuild cache, default no/yes"
         if ($check.toString().ToLower() -eq "yes") {
             Out-Cache
