@@ -22,7 +22,6 @@ function  Out-Cache {
 }
 
 function  Change-JDK {
-
     if (Test-Path -Path "jdkpath.txt" -PathType leaf) {
         $check = Read-Host -Prompt "Rebuild cache, default no/yes"
         if ($check.toString().ToLower() -eq "yes") {
@@ -44,18 +43,19 @@ function  Change-JDK {
     Write-Output "---------------List Using JDK Path--------------"
     Write-Host $env:JAVA_HOME -ForegroundColor Blue
     
-    $num = Read-Host -Prompt "expected order numbered"
+    $num = -1
     while ($true) {
+        $num = Read-Host -Prompt "---------------Expected Order Numbered"
         if (($num -ge 0) -and ($num -lt $cache.Length)) {
             $jdkFolder = $cache.get($num)
-            Write-Output "---------------List Choosing JDK Path --------------"
             Write-Host $jdkFolder -ForegroundColor Yellow
             [System.Environment]::SetEnvironmentVariable('JAVA_HOME', $jdkFolder, 'User')
-            Write-Host "Check Version In New Window." -ForegroundColor Red
+            Write-Host "---------------Check In New Window---------------" -ForegroundColor Red
             break
         }
         else {
-            Write-Output "Index was outside the bounds."
+            $len = $cache.Length-1
+            Write-Host "---------------0<= number <=$len" -ForegroundColor Yellow
             continue
         }
     }
