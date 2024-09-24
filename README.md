@@ -9,4 +9,8 @@ $env:PSModulePath -split ';'
 ```
 > choose powershell or windowspowershell modules directory
 > put files in modules directory
+### how to use?
+> PS> Change-JDK 
+> PS> Set-Alias -Name cj -Value Change-JDK
+> PS> cj
 ### enjoy life!
