@@ -43,9 +43,12 @@ function  Change-JDK {
     Write-Output "---------------List Using JDK Path--------------"
     Write-Host $env:JAVA_HOME -ForegroundColor Blue
     
-    $num = -1
     while ($true) {
-        $num = Read-Host -Prompt "---------------Expected Order Numbered"
+        $content = Read-Host -Prompt "---------------Expected Order Numbered"
+        if ('' -eq $content.Trim()) {
+            continue
+        }
+        $num = [System.Convert]::ToInt32($content)
         if (($num -ge 0) -and ($num -lt $cache.Length)) {
             $jdkFolder = $cache.get($num)
             Write-Host $jdkFolder -ForegroundColor Yellow
@@ -54,7 +57,7 @@ function  Change-JDK {
             break
         }
         else {
-            $len = $cache.Length-1
+            $len = $cache.Length - 1
             Write-Host "---------------0<= number <=$len" -ForegroundColor Yellow
             continue
         }
