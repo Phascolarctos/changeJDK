@@ -44,11 +44,14 @@ function  Change-JDK {
     Write-Host $env:JAVA_HOME -ForegroundColor Blue
     
     while ($true) {
-        $content = Read-Host -Prompt "---------------Expected Order Numbered"
+        $content = Read-Host -Prompt "---------------Expected Order Numbered(exit code: -1)"
         if ('' -eq $content.Trim()) {
             continue
         }
-        $num = [System.Convert]::ToInt32($content)
+        $num = [System.Convert]::ToInt32($content.Trim())
+        if (-1 -eq $num) {
+            break
+        }
         if (($num -ge 0) -and ($num -lt $cache.Length)) {
             $jdkFolder = $cache.get($num)
             Write-Host $jdkFolder -ForegroundColor Yellow
